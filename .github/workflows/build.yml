@@ -1,0 +1,23 @@
+name: Build
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: bosce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          apt -y update
+          apt -y install cmake libboost-dev libboost-filesystem-dev libboost-program-options-dev
+      - name: Build 
+        run: |
+            mkdir build
+            cd build
+            cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+            cmake --build . --target demo
+            cmake --build . -- -j4
+     
