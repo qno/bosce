@@ -11,7 +11,7 @@ jobs:
           submodules: recursive
       - name: Install dependencies
         run: |
-          apt -y update
+          # apt -y update
           apt -y install cmake libboost-dev libboost-filesystem-dev libboost-program-options-dev
       - name: Build 
         run: |
