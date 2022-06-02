@@ -21,4 +21,9 @@ jobs:
             cmake --build . --target demo
             cmake --build . -- -j4
             ctest
-     
+            cmake --build . --target install
+            - name: Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          path: dist
+          name: bosce-linux
