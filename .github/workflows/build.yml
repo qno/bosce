@@ -4,7 +4,10 @@ on: [push, pull_request]
 jobs:
   build:
     name: bosce
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -26,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: dist
-          name: bosce-linux
+          name: bosce-${{ matrix.os }}
